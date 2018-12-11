@@ -12,7 +12,11 @@ def call(body){
         node() {
             stage('Setup') {
                 init {}
-                gitUtil = new Git(this)
+                git = new Git(this)
+            }
+            stage('SCM Checkout') {
+                git.checkout()
+                echo "=== Git Checkout Completed ==="
             }
         }
     }
