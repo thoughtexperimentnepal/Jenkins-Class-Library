@@ -1,5 +1,6 @@
 import com.rajanpupa.jenkins.common.sourcecontrol.Git
 import com.rajanpupa.jenkins.common.build.Gradle
+import com.rajanpupa.jenkins.common.tests.Test
 
 def call(body){
     def config = [:]
@@ -9,6 +10,7 @@ def call(body){
 
     Git git
     Gradle gradle
+    Test testJunit
 
     try {
         node() {
@@ -28,6 +30,12 @@ def call(body){
                 }else {
                     echo ' :) Build Passed :) :) '
                 }
+            }
+            stage('Publish JUnit Results') {
+                testJunit.test(new Gradle(this))
+            }
+            stage('Archive') {
+                jenkinsArchive.archive()
             }
         }
     }
