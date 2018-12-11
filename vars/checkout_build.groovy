@@ -22,7 +22,7 @@ def call(body){
                 echo "=== Git Checkout Completed ==="
             }
             stage('Build') {
-                if ( !gradleBuild.build("clean build") ) {
+                if ( !gradle.build("clean build") ) {
                     currentDescription = ' :( Build failed :('
                     error currentDescription
                 }else {
@@ -33,7 +33,7 @@ def call(body){
     }
     catch (error) {
         currentDescription = error.message
-        echo error.message
+        echo "error = ${error.message}"
         throw error
     }
     finally {
