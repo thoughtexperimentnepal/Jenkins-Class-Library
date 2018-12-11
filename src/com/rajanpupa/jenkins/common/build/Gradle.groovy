@@ -1,6 +1,6 @@
 package com.rajanpupa.jenkins.common.build
 
-class Gradle implements Serializable {
+class Gradle implements BuildTool {
     protected def jenkins
 
     Gradle(jenkins){
