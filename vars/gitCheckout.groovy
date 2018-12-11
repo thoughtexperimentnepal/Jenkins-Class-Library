@@ -17,6 +17,8 @@ def call(body){
             stage('SCM Checkout') {
                 git.checkout()
                 echo "=== Git Checkout Completed ==="
+                echo '=== Providing execute permission to gradlew ==='
+                this.sh "chmod +x gradlew"
             }
         }
     }

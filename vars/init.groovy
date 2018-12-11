@@ -9,8 +9,6 @@ def call(body) {
     try {
         env.CF_TOOL = tool 'cf_cli_6_28_0'
         env.PATH = "${env.PATH}:${env.CF_TOOL}/bin"
-        echo '=== Providing execute permission to gradlew ==='
-        this.sh "chmod +x gradlew"
     }
     catch (all) {
         echo "No CF custom tool installed"
