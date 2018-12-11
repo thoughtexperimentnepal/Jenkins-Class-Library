@@ -3,8 +3,8 @@
   <component name="ChangeListManager">
     <list default="true" id="15b632ba-295a-43f2-b77d-87a4392f1a3e" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/rajanpupa/jenkins/common/build/Gradle.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/rajanpupa/jenkins/common/build/Gradle.groovy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vars/gitCheckout.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/vars/gitCheckout.groovy" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vars/init.groovy" beforeDir="false" afterPath="$PROJECT_DIR$/vars/init.groovy" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -39,7 +39,7 @@
         <entry file="file://$PROJECT_DIR$/src/com/rajanpupa/jenkins/common/build/Gradle.groovy">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="204">
-              <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+              <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
             </state>
           </provider>
         </entry>
@@ -56,8 +56,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/vars/gitCheckout.groovy">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+            <state relative-caret-position="306">
+              <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
             </state>
           </provider>
         </entry>
@@ -84,9 +84,9 @@
       <list>
         <option value="$PROJECT_DIR$/src/com/rajanpupa/jenkins/common/sourcecontrol/Git.groovy" />
         <option value="$PROJECT_DIR$/src/com/rajanpupa/jenkins/common/build/BuildTool.groovy" />
-        <option value="$PROJECT_DIR$/src/com/rajanpupa/jenkins/common/build/Gradle.groovy" />
         <option value="$PROJECT_DIR$/vars/checkout_build.groovy" />
         <option value="$PROJECT_DIR$/vars/init.groovy" />
+        <option value="$PROJECT_DIR$/src/com/rajanpupa/jenkins/common/build/Gradle.groovy" />
         <option value="$PROJECT_DIR$/vars/gitCheckout.groovy" />
       </list>
     </option>
@@ -180,7 +180,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544571029624" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1544571343209" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
@@ -215,7 +215,7 @@
       <updated>1544496447693</updated>
       <workItem from="1544496448830" duration="2162000" />
       <workItem from="1544498957055" duration="1726000" />
-      <workItem from="1544569557903" duration="1505000" />
+      <workItem from="1544569557903" duration="1801000" />
     </task>
     <task id="LOCAL-00001" summary="groovy files added with gitCheckout">
       <created>1544497324182</created>
@@ -242,7 +242,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5393000" />
+    <option name="totallyTimeSpent" value="5689000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -332,10 +332,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/vars/init.groovy">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/rajanpupa/jenkins/common/build/Gradle.groovy">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
-          <caret line="12" column="23" selection-start-line="12" selection-start-column="23" selection-end-line="12" selection-end-column="23" />
+          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
         </state>
       </provider>
     </entry>
@@ -349,20 +359,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/vars/init.groovy">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="51" selection-start-line="10" selection-start-column="51" selection-end-line="10" selection-end-column="51" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vars/gitCheckout.groovy">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="42" lean-forward="true" selection-start-line="20" selection-start-column="42" selection-end-line="20" selection-end-column="42" />
+        <state relative-caret-position="306">
+          <caret line="18" column="53" selection-start-line="18" selection-start-column="53" selection-end-line="18" selection-end-column="53" />
         </state>
       </provider>
     </entry>

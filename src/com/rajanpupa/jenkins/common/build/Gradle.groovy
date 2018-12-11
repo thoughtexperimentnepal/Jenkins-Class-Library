@@ -10,6 +10,7 @@ class Gradle implements BuildTool {
     Boolean build(String args){
         try {
             jenkins.echo 'Starting Gradle Build'
+            jenkins.sh "chmod +x ./gradlew"
             jenkins.sh "./gradlew --no-daemon ${args} --parallel"
 
             return true
