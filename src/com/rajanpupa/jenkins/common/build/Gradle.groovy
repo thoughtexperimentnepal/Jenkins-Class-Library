@@ -1,6 +1,6 @@
 package com.rajanpupa.jenkins.common.build
 
-class Gradle implements BuildTool {
+class Gradle {
     protected def jenkins
 
     Gradle(jenkins){
