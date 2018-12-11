@@ -22,7 +22,7 @@ def call(body){
     }
     catch (error) {
         currentDescription = error.message
-        echo error.message
+        echo 'error = ${error.message}'
         throw error
     }
     finally {
