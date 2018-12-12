@@ -1,5 +1,8 @@
 import com.rajanpupa.jenkins.common.sourcecontrol.Git
 import com.rajanpupa.jenkins.common.build.Gradle
+import com.rajanpupa.jenkins.common.tests.Test
+import com.rajanpupa.jenkins.common.artifactmanagement.Archive
+import com.rajanpupa.jenkins.common.artifactmanagement.JenkinsArchive
 
 def call(body){
     def config = [:]
@@ -9,6 +12,8 @@ def call(body){
 
     Git git
     Gradle gradle
+    Test testJunit
+    Archive jenkinsArchive
 
     try {
         node() {
@@ -16,6 +21,8 @@ def call(body){
                 init {}
                 git = new Git(this)
                 gradle = new Gradle(this)
+                testJunit = new JUnit(this)
+                jenkinsArchive = new JenkinsArchive(this)
             }
             stage('SCM Checkout') {
                 git.checkout()
@@ -28,6 +35,12 @@ def call(body){
                 }else {
                     echo ' :) Build Passed :) :) '
                 }
+            }
+            stage('Publish JUnit Results') {
+                testJunit.test(new Gradle(this))
+            }
+            stage('Archive') {
+                jenkinsArchive.archive()
             }
         }
     }
