@@ -1,6 +1,7 @@
 import com.rajanpupa.jenkins.common.sourcecontrol.Git
 import com.rajanpupa.jenkins.common.build.Gradle
 import com.rajanpupa.jenkins.common.tests.Test
+import com.rajanpupa.jenkins.common.tests.JUnit
 import com.rajanpupa.jenkins.common.artifactmanagement.Archive
 import com.rajanpupa.jenkins.common.artifactmanagement.JenkinsArchive
 
