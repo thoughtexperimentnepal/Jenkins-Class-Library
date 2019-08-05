@@ -15,24 +15,33 @@ def call(body) {
     echo "==========================_publishToNexus.groovy======================================"
 	echo "config = ${config}"
 	
-	// Get the versions from nexus
-	// nexus = new Nexus("private_snapshot_repository", "private_release_repository", env.NEXUS_USERNAME, env.NEXUS_PASSWORD, config.projectName)
-	// nexus.setJenkins(this)
+	// //Get the versions from nexus
+	nexus = new Nexus("private_snapshot_repository", "private_release_repository", env.NEXUS_USERNAME, env.NEXUS_PASSWORD, config.projectName)
+	nexus.setJenkins(this)
 	
-	// echo "nexus object created"
-	// lastRelease = nexus.getLastRelease(config.projectName)
-	// echo "last release: ${lastRelease.toString()}"
+	echo "nexus object created"
+	lastRelease = nexus.getLastRelease(config.projectName)
+	echo "last release: ${lastRelease.toString()}"
 	
-	// Semver semver = new Semver(lastRelease.toString());
+	Semver semver = new Semver(lastRelease.toString());
 	
 	// Determine the latest version
+
+    try{
+        sh '''
+            groovy -v
+        '''
+    } catch (error ){
+        echo 'Echo failed groovy version'
+        echo "${error}"
+    }
 	
 	// Do a major version increase
-	// bumpedMajorVersion = semver.previewBumpMajor()
-	// echo "=== bumpedMajorVersion= ${bumpedMajorVersion}"
-	// env.BUMP_VERSION=bumpedMajorVersion
-	// echo "=== env bumpedMajorVersion= ${env.BUMP_VERSION}"
-	// return;
+	bumpedMajorVersion = semver.previewBumpMajor()
+	echo "=== bumpedMajorVersion= ${bumpedMajorVersion}"
+	env.BUMP_VERSION=bumpedMajorVersion
+	echo "=== env bumpedMajorVersion= ${env.BUMP_VERSION}"
+	return;
 	
     // pass version to gradlew publish 
     // try {

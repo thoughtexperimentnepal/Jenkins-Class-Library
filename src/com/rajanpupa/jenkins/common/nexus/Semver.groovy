@@ -1,26 +1,47 @@
 package com.rajanpupa.jenkins.common.nexus
 
-import groovy.transform.Sortable
+//import groovy.transform.Sortable
 
-@Sortable
-public class Semver implements Serializable {
+//@Sortable
+public class Semver implements Comparable<Semver>, Serializable {
     Integer major
     Integer minor
     Integer patch
 
     public Semver(String semvVer) {
-        log(semvVer)
         def majorMinorPatch = semvVer.split('\\.')
         
         if (majorMinorPatch.length != 3) 
             throw new IllegalArgumentException("SemVer must be of form 'X.Y.Z'. Instead found ${semvVer} -> ${majorMinorPatch}");
         
-        majorMinorPatch = majorMinorPatch.collect {
-            Integer.parseInt(it)
+        this.major = Integer.parseInt(majorMinorPatch[0])
+        this.minor = Integer.parseInt(majorMinorPatch[1])
+        this.patch = Integer.parseInt(majorMinorPatch[2])
+
+        // echo ("-- Major version " + this.major)
+    }
+
+    @Override
+    int compareTo(Semver o) {
+        if (this.major > o.major) {
+            return 1
         }
-        this.major = majorMinorPatch[0]
-        this.minor = majorMinorPatch[1]
-        this.patch = majorMinorPatch[2]
+        if (this.major < o.major) {
+            return -1
+        }
+        if (this.minor > o.minor) {
+            return 1
+        }
+        if (this.minor < o.minor) {
+            return -1
+        }
+        if (this.patch > o.patch) {
+            return 1
+        }
+        if (this.patch < o.patch) {
+            return -1
+        }
+        return 0
     }
 
     @Override
@@ -29,15 +50,15 @@ public class Semver implements Serializable {
     }
 
     def previewBumpMajor() {
-        return "${major + 1}.${0}.${0}"
+        return "${this.major + 1}.${0}.${0}"
     }
 
     def previewBumpMinor() {
-        return "${major}.${minor + 1}.${0}"
+        return "${this.major}.${this.minor + 1}.${0}"
     }
 
     def previewBumpPatch() {
-        return "${major}.${minor}.${patch + 1}"
+        return "${this.major}.${this.minor}.${this.patch + 1}"
     }
 
     def bumpMajor() {

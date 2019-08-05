@@ -2,6 +2,8 @@ package com.rajanpupa.jenkins.common.nexus
 
 import com.rajanpupa.jenkins.common.nexus.Semver
 import groovy.json.JsonSlurperClassic
+import java.util.List
+import java.util.ArrayList;
 
 class Nexus implements Serializable {
 	final String GROUP_ID = 'com.rajanpupa.common' 
@@ -14,7 +16,7 @@ class Nexus implements Serializable {
 	String password
 	String nexusHost = 'nexus.rajanpupa.com'
 	String nexusSearchPath = 'service/rest/v1/search'
-	final Semver DEFAULT_VERSION = new Semver('0.0.0')
+	final Semver DEFAULT_VERSION = new Semver('1.0.0')
 	//Map servicesConfig
 	String projectName
 	
@@ -51,8 +53,17 @@ class Nexus implements Serializable {
 		if(vs.isEmpty()) {
 			return this.DEFAULT_VERSION.toString()
 		}
+
+        //def semvers = [];
+        List<Semver> semvers = new ArrayList<>();
+		for(String version: vs){
+			semvers.add(new Semver(version));
+		}
+        //Collections.sort(semvers);//.sort(false);
+        semvers.sort(false);
 		
 		log(" vs = ${vs}")
+        log(" sorted = ${sorted}")
 		
 		def lastVersion = vs[vs.size()-1]
 		
