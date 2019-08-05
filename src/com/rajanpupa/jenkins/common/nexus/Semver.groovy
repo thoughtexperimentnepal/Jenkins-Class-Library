@@ -3,14 +3,18 @@ package com.rajanpupa.jenkins.common.nexus
 import groovy.transform.Sortable
 
 @Sortable
-class Semver implements Comparable<Semver>,  Serializable {
+public class Semver implements Serializable {
     Integer major
     Integer minor
     Integer patch
 
-    Semver(String semvVer) {
+    public Semver(String semvVer) {
+        log(semvVer)
         def majorMinorPatch = semvVer.split('\\.')
-        if (majorMinorPatch.length != 3) throw new IllegalArgumentException("SemVer must be of form 'X.Y.Z'. Instead found ${semvVer} -> ${majorMinorPatch}")
+        
+        if (majorMinorPatch.length != 3) 
+            throw new IllegalArgumentException("SemVer must be of form 'X.Y.Z'. Instead found ${semvVer} -> ${majorMinorPatch}");
+        
         majorMinorPatch = majorMinorPatch.collect {
             Integer.parseInt(it)
         }

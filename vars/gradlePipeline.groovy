@@ -11,14 +11,14 @@ def call(body){
     echo "== Branch Name : ${env.BRANCH_NAME}"
 	echo "== PR Target : ${env.CHANGE_TARGET}"
 
-    // skip if the branch name is not dev or master or PR
+    // //skip if the branch name is not dev or master or PR
     if ( env.BRANCH_NAME != null && 
 		 !"dev".equalsIgnoreCase(env.BRANCH_NAME) && 
 		 !"master".equalsIgnoreCase(env.BRANCH_NAME) && 
 		 !env.BRANCH_NAME.toUpperCase().startsWith("PR") 
 	){                                  
 	     echo " Skipping Build and Deploy for commit event of feature branch ${env.BRANCH_NAME} "
-	     return
+	     //return
 	}
 
     // variable declaration
@@ -45,7 +45,18 @@ def call(body){
                 testJunit = new JUnit(this)
             }
             stage('SCM Checkout') {
+                echo "-- Checkout from Github "
                 __gitCheckout{}
+            }
+
+            // TODO: REMOVE THIS: FOR TEST ONLY
+            if("jenkins".equalsIgnoreCase(env.BRANCH_NAME)){
+                    echo ("-- Calling publish to nexus")
+                    stage('Publish to Nexus') {
+                        __publishToNexus {projectName=config.projectName}
+                    }
+
+                    return;
             }
 
             if (!"master".equalsIgnoreCase(env.BRANCH_NAME)){
@@ -74,9 +85,9 @@ def call(body){
 
                 if ("dev".equalsIgnoreCase(env.CHANGE_TARGET)) {
 					// Event: PR TO DEV
-					stage("PI Test"){
-						__gradlePiTest{ skipStep=config.skipPiTest }
-					}
+					// stage("PI Test"){
+					// 	__gradlePiTest{ skipStep=config.skipPiTest }
+					// }
 					
 				} else if ( "dev".equalsIgnoreCase(env.BRANCH_NAME) ) {
 					// Event: MERGE TO DEV
@@ -91,17 +102,17 @@ def call(body){
                     // acceptance test
 
                     // publish to nexus
-                    stage('Publish to Nexus') {
-						__publishToNexus {projectName=config.projectName}
-					}
+                    // stage('Publish to Nexus') {
+					// 	__publishToNexus {projectName=config.projectName}
+					// }
 
                 } else{
                     // Event: merge to Master
 
                     // Pull from Nexus
-                    stage("Nexus get jar"){
-                        __getJarFromNexus{projectName=config.projectName}
-                    }
+                    // stage("Nexus get jar"){
+                    //     __getJarFromNexus{projectName=config.projectName}
+                    // }
 
                     // deploy to higher environments 
 

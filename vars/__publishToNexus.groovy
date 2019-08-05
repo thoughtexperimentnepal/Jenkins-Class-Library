@@ -16,31 +16,32 @@ def call(body) {
 	echo "config = ${config}"
 	
 	// Get the versions from nexus
-	nexus = new Nexus("dakota_private_snapshot_repository", "dakota_private_release_repository", env.NEXUS_USERNAME, env.NEXUS_PASSWORD, config.projectName)
-	nexus.setJenkins(this)
+	// nexus = new Nexus("private_snapshot_repository", "private_release_repository", env.NEXUS_USERNAME, env.NEXUS_PASSWORD, config.projectName)
+	// nexus.setJenkins(this)
 	
-	echo "nexus object created"
-	lastRelease = nexus.getLastRelease(config.projectName)
-	echo "last release: ${lastRelease.toString()}"
+	// echo "nexus object created"
+	// lastRelease = nexus.getLastRelease(config.projectName)
+	// echo "last release: ${lastRelease.toString()}"
 	
-	Semver semver = new Semver(lastRelease.toString());
+	// Semver semver = new Semver(lastRelease.toString());
 	
 	// Determine the latest version
 	
 	// Do a major version increase
-	bumpedMajorVersion = semver.previewBumpMajor()
-	echo "=== bumpedMajorVersion= ${bumpedMajorVersion}"
-	env.BUMP_VERSION=bumpedMajorVersion
-	echo "=== env bumpedMajorVersion= ${env.BUMP_VERSION}"
+	// bumpedMajorVersion = semver.previewBumpMajor()
+	// echo "=== bumpedMajorVersion= ${bumpedMajorVersion}"
+	// env.BUMP_VERSION=bumpedMajorVersion
+	// echo "=== env bumpedMajorVersion= ${env.BUMP_VERSION}"
+	// return;
 	
-	// pass version to gradlew publish 
-    try {
-        sh '''
-          ./gradlew publish -PbuildVersion=$BUMP_VERSION
-        '''
-    } catch (error) {
-        echo 'Push to NEXUS Failed'
-        echo("Publish to nexus failed with root cause : ${error}")
-        currentBuild.result = 'UNSTABLE'
-    }
+    // pass version to gradlew publish 
+    // try {
+    //     sh '''
+    //       ./gradlew publish -PbuildVersion=$BUMP_VERSION
+    //     '''
+    // } catch (error) {
+    //     echo 'Push to NEXUS Failed'
+    //     echo("Publish to nexus failed with root cause : ${error}")
+    //     currentBuild.result = 'UNSTABLE'
+    // }
 }
